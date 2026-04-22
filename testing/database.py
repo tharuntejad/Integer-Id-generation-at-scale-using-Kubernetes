@@ -1,7 +1,8 @@
 import sqlite3
+from pathlib import Path
 
 def setup_database():
-    conn = sqlite3.connect("testing/generated_ids.db")
+    conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS ids (
@@ -45,6 +46,7 @@ def truncate_table():
 
 
 if __name__ == "__main__":
+    DB_FILE = Path('./generated_ids.db')
     setup_database()
 
     print("Total records in the database    :", count_records())
